@@ -41,11 +41,10 @@ class SimpleTokenizer:
                 encoded_text.append(self.word_to_id[word])
             else:
                 encoded_text.append(1)
-        return encoded_text
+        return [self.word_to_id.get(word, 1) for word in text.lower().split()]
 
     def decode(self, ids: list[int]) -> str:
         """
         Returns the decoded, space-separated text.
         """
-        decoded_text = " ".join(self.id_to_word.get(index, "<UNK>") for index in ids)
-        return decoded_text
+        return " ".join(self.id_to_word.get(index, self.unk_token) for index in ids)
