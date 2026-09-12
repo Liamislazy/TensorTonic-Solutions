@@ -34,13 +34,6 @@ class SimpleTokenizer:
         """
         Returns token IDs for the input text.
         """
-        encoded_text = []
-        words = [word.lower() for word in text.split()]
-        for word in words:
-            if word in self.word_to_id:
-                encoded_text.append(self.word_to_id[word])
-            else:
-                encoded_text.append(1)
         return [self.word_to_id.get(word, 1) for word in text.lower().split()]
 
     def decode(self, ids: list[int]) -> str:
