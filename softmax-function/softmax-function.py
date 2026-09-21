@@ -1,5 +1,8 @@
 import numpy as np
 
-def softmax(x: np.ndarray) -> np.ndarray:
+def softmax(x: list) -> np.ndarray:
+    """
+    Returns stable softmax probabilities as a NumPy array matching the shape of x.
+    """
     exp_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
     return exp_x / np.sum(exp_x, axis=-1, keepdims=True)
